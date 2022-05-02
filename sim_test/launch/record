@@ -1,0 +1,22 @@
+-d 动画录制的时间,默认录制10秒
+-e 动画开始延迟
+-x 录制区域的起始X坐标
+-y 录制区域的起始Y坐标
+-w 录制区域的宽度
+-y 录制区域的高度
+byzanz-record -x 0 -y 0 -w 800 -h 505 ~/x.gif 
+
+xwininfo
+Absolute upper-left X: 开始的X坐标，绝对值
+Absolute upper-left Y: 开始的Y坐标,绝对值
+Width: 窗口宽度
+Height : 窗口高度
+只要有这四个数值我们就可以开始录制gif动态图了。
+Absolute upper-left X:  72
+  Absolute upper-left Y:  64
+  Relative upper-left X:  1
+  Relative upper-left Y:  38
+  Width: 1848
+  Height: 1016
+
+  byzanz-record  -x 330 -y 140 --delay 3 -d 20 -w 1267 -h 846 ~/4.gif 

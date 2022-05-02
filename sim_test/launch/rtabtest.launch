@@ -1,0 +1,25 @@
+<launch>
+   
+    <!--  launch steer_mini_gazebo model node -->
+    
+    <include file="$(find sim_test)/launch/sensor_test2.launch">
+      <arg name="world" value="$(find sim_test)/world/xzk4.world"/>       
+    </include>
+
+    <!-- <include file="$(find sim_test)/launch/depth2scan2.launch" /> -->
+    <include file="$(find sim_test)/launch/pointcloud2scan.launch" />
+
+
+    <!-- load robot_localication node Integrate imu and odometer information, output the fused odom information and tf conversion from base_link to odom for Gmapping mapping -->
+    <include file="$(find sim_test)/launch/dual_ekf_navsat_mini.launch" />
+
+    <!--  launch rtabmapping node -->
+    <include file="$(find sim_test)/launch/rtab_mapping.launch" />
+
+    <!-- Load model into Rviz and Load Rviz configuration file into rviz-->
+    <param name="robot_description" command="$(find xacro)/xacro $(find test9)/urdf/xacro/mycar.xacro" />
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mini_gmapping)/rviz/gmapping_rviz.rviz" /> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find sim_test)/config/rtabmap.rviz" />
+    <!-- <node name="rviz" pkg="rviz" type="rviz" /> -->
+
+</launch>

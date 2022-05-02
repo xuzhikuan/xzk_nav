@@ -1,0 +1,27 @@
+global_costmap:
+  global_frame: map
+  
+  robot_base_frame: base_link
+  update_frequency: 10
+  #static_map: true
+      
+  
+  footprint: [[0.64,-0.5 ], [-0.64, -0.5], [-0.64, 0.5], [0.64,0.5]]
+  plugins: 
+      - {name: static,    type: "costmap_2d::StaticLayer"}            
+      - {name: sensor,    type: "costmap_2d::ObstacleLayer"}
+      - {name: inflation, type: "costmap_2d::InflationLayer"}
+
+  inflation:
+        enabled: true
+        inflation_radius: 0.5
+#cost_scaling_factor: 10.0
+
+  static:
+        enabled: true
+        
+  sensor:
+        observation_sources: laser_scan point_cloud_sensor
+        laser_scan: {sensor_frame: d435_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+        observation_sources: point_cloud_sensor
+        laser_scan: {sensor_frame: d435_link, data_type: PointCloud2, topic: d435/depth/color/points, marking: true, clearing: true}
